@@ -2,7 +2,7 @@
 
 use PHPUnit_Framework_TestCase;
 
-use SSD\CaseConverter\Factory;
+use SSD\StringConverter\Factory;
 
 
 class ConverterTest extends PHPUnit_Framework_TestCase {
