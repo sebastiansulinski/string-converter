@@ -1,27 +1,7 @@
 <?php namespace SSD\StringConverter;
 
 
-class Converter {
-
-    /**
-     * Convert from camel case to capital letters with underscores.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public function fromCamelToConstant($string)
-    {
-
-        $underscored = preg_replace_callback(
-            '/([A-Z])/',
-            [$this, 'toUnderscore'],
-            $string
-        );
-
-        return strtoupper($underscored);
-
-    }
+abstract class Converter {
 
 
     /**
@@ -31,7 +11,7 @@ class Converter {
      *
      * @return string
      */
-    private function toUnderscore($params)
+    final public function underscore($params)
     {
 
         return "_" . $params[1];
@@ -40,58 +20,28 @@ class Converter {
 
 
     /**
-     * Convert hyphens to camel case.
-     *
-     * @param $string
-     *
-     * @return mixed
-     */
-    public function hyphenToCamel($string)
-    {
-
-        return preg_replace_callback('/-(.)/', [$this, 'toUCFirst'], $string);
-
-    }
-
-
-    /**
-     * Convert snake case to camel case.
-     *
-     * @param $string
-     *
-     * @return mixed
-     */
-    public function underScoreToCamel($string)
-    {
-
-        return preg_replace_callback('/_(.)/', [$this, 'toUCFirst'], $string);
-
-    }
-
-
-    /**
-     * Convert underscore to first letters of each word in capital.
-     *
-     * @param $string
-     *
-     * @return mixed
-     */
-    public function underScoreToUCWords($string)
-    {
-
-        return ucfirst(preg_replace_callback('/_(.)/', [$this, 'toUCFirst'], $string));
-
-    }
-
-
-    /**
-     * Change first letter to capital.
+     * Prepend hyphen.
      *
      * @param $params
      *
      * @return string
      */
-    private function toUCFirst($params)
+    final protected function hyphen($params)
+    {
+
+        return "-" . $params[1];
+
+    }
+
+
+    /**
+     * Convert first letter to upper case.
+     *
+     * @param $params
+     *
+     * @return string
+     */
+    final protected function upperCaseFirst($params)
     {
 
         return ucfirst($params[1]);
