@@ -84,10 +84,10 @@ class Factory {
 
         $elements = static::splitName($name);
 
-        if (count($elements) < 2) {
+        if (count($elements) < 3) {
 
             throw new BadMethodCallException(
-                "The method you called does not exist"
+                "The class / method you called does not exist"
             );
 
         }
@@ -106,6 +106,7 @@ class Factory {
      * @param $name
      * @param $arguments
      *
+     * @throws BadMethodCallException
      * @return mixed
      */
     public static function __callStatic($name, array $arguments = [])
