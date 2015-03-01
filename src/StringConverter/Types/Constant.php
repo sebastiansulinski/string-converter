@@ -3,8 +3,15 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
+use SSD\StringConverter\Traits\Camelable;
+use SSD\StringConverter\Traits\Hyphenable;
+use SSD\StringConverter\Traits\Spaceable;
+use SSD\StringConverter\Traits\Underscoreable;
+
 
 class Constant extends Converter {
+
+    use Camelable, Hyphenable, Underscoreable, Spaceable;
 
 
     /**

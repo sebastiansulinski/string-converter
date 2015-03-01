@@ -3,8 +3,15 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
+use SSD\StringConverter\Traits\Constantable;
+use SSD\StringConverter\Traits\Hyphenable;
+use SSD\StringConverter\Traits\Spaceable;
+use SSD\StringConverter\Traits\Underscoreable;
+
 
 class Camel extends Converter {
+
+    use Constantable, Hyphenable, Underscoreable, Spaceable;
 
 
     /**

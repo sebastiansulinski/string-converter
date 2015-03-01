@@ -3,9 +3,15 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
+use SSD\StringConverter\Traits\Camelable;
+use SSD\StringConverter\Traits\Constantable;
+use SSD\StringConverter\Traits\Spaceable;
+use SSD\StringConverter\Traits\Underscoreable;
+
 
 class Hyphen extends Converter {
 
+    use Camelable, Constantable, Underscoreable, Spaceable;
 
     /**
      * Return result of the regular expression replacement.
