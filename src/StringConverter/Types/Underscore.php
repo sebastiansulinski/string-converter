@@ -15,7 +15,7 @@ class Underscore extends Converter {
      *
      * @return mixed
      */
-    private function express($string, $method)
+    protected function express($string, $method)
     {
 
         return preg_replace_callback(
@@ -23,48 +23,6 @@ class Underscore extends Converter {
             [$this, $method],
             $string
         );
-
-    }
-
-    /**
-     * Convert snake case to camel case.
-     *
-     * @param $string
-     *
-     * @return mixed
-     */
-    public function toCamel($string)
-    {
-
-        return $this->express($string, 'upperCaseFirst');
-
-    }
-
-    /**
-     * Convert to upper-case underscore.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public function toConstant($string)
-    {
-
-        return strtoupper($this->express($string, 'underscore'));
-
-    }
-
-    /**
-     * Convert to lower-case hyphen.
-     *
-     * @param $string
-     *
-     * @return mixed
-     */
-    public function toHyphen($string)
-    {
-
-        return strtolower($this->express($string, 'hyphen'));
 
     }
 

@@ -6,6 +6,7 @@ use SSD\StringConverter\RegEx;
 
 class Constant extends Converter {
 
+
     /**
      * Return result of the regular expression replacement.
      *
@@ -14,7 +15,7 @@ class Constant extends Converter {
      *
      * @return mixed
      */
-    private function express($string, $method)
+    protected function express($string, $method)
     {
 
         return preg_replace_callback(
@@ -25,45 +26,5 @@ class Constant extends Converter {
 
     }
 
-    /**
-     * Convert to camel case.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public function toCamel($string)
-    {
-
-        return $this->express(strtolower($string), 'upperCaseFirst');
-
-    }
-
-    /**
-     * Convert to lower-case hyphen.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public function toHyphen($string)
-    {
-
-        return strtolower($this->express($string, 'hyphen'));
-
-    }
-
-    /**
-     * Convert to lower-case underscore.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public function toUnderscore($string)
-    {
-        return strtolower($this->express($string, 'underscore'));
-
-    }
 
 }
