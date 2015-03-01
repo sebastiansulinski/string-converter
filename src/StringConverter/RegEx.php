@@ -9,4 +9,6 @@ class RegEx {
 
     const REGEX_CAPITAL_LETTERS = '/([A-Z])/';
 
+    const REGEX_SPACE = '/\s(.)/';
+
 }
