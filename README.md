@@ -35,11 +35,11 @@ This simple class allows you to easily convert between the following string form
 
 ## Usage examples
 
+### Camel-case
+
 ```
 use SSD\StringConverter\Factory;
 
-
-### Camel-case
 
 echo Factory::camelToConstant('phpEol');
 // PHP_EOL
@@ -55,9 +55,13 @@ echo Factory::camelToSpace('phpEol');
 
 echo Factory::camelToSpace('phpEol', 'strtolower');
 // php eol
-
+```
 
 ### Constant
+
+```
+use SSD\StringConverter\Factory;
+
 
 echo Factory::constantToCamel('PHP_EOL');
 // phpEol
@@ -73,9 +77,13 @@ echo Factory::constantToSpace('PHP_EOL');
 
 echo Factory::constantToSpace('PHP_EOL', 'strtolower');
 // php eol
-
+```
 
 ### Hyphen
+
+```
+use SSD\StringConverter\Factory;
+
 
 echo Factory::hyphenToCamel('php-eol');
 // phpEol
@@ -91,9 +99,13 @@ echo Factory::hyphenToSpace('php-eol');
 
 echo Factory::hyphenToSpace('php-eol', 'ucfirst');
 // Php eol
-
+```
 
 ### Underscore
+
+```
+use SSD\StringConverter\Factory;
+
 
 echo Factory::underscoreToCamel('php_eol');
 // phpEol
@@ -109,9 +121,13 @@ echo Factory::underscoreToSpace('php_eol');
 
 echo Factory::underscoreToSpace('php_eol', 'ucfirst');
 // Php eol
-
+```
 
 ### Space
+
+```
+use SSD\StringConverter\Factory;
+
 
 echo Factory::spaceToCamel('php eol');
 // phpEol
