@@ -13,4 +13,6 @@ abstract class BaseTest extends PHPUnit_Framework_TestCase {
 
     const STRING_UNDERSCORE = 'php_eol';
 
+    const STRING_SPACE = 'php eol';
+
 }
