@@ -11,14 +11,16 @@ class Space extends Converter implements Contract {
      * Convert to space format.
      * Call optional function on callback.
      *
-     * @param $string
+     * @param \SSD\StringConverter\Types\Contract
+     * @param string $string
      * @param null $function
-     * @return mixed
+     *
+     * @return string
      */
-    public function to($string, $function = null)
+    public function from(Contract $contract, $string, $function = null)
     {
 
-        $string = $this->recipe($string, 'space');
+        $string = $contract->recipe($string, 'space');
 
         if (empty($function)) {
 
@@ -39,7 +41,7 @@ class Space extends Converter implements Contract {
      * @param $string
      * @param $method
      *
-     * @return mixed
+     * @return string
      */
     public function recipe($string, $method)
     {

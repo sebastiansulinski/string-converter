@@ -10,14 +10,16 @@ class Constant extends Converter implements Contract {
     /**
      * Convert to constant format.
      *
-     * @param $string
+     * @param \SSD\StringConverter\Types\Contract
+     * @param string $string
+     *
      * @return string
      */
-    public function to($string)
+    public function from(Contract $contract, $string)
     {
 
         return strtoupper(
-            $this->recipe(
+            $contract->recipe(
                 $string,
                 'underscore'
             )
@@ -31,7 +33,7 @@ class Constant extends Converter implements Contract {
      * @param $string
      * @param $method
      *
-     * @return mixed
+     * @return string
      */
     public function recipe($string, $method)
     {

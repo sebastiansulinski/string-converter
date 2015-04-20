@@ -3,7 +3,7 @@
 
 interface Contract {
 
-    public function to($string);
+    public function from(Contract $contract, $string);
 
     public function recipe($string, $method);
 

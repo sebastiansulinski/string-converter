@@ -10,17 +10,20 @@ class Camel extends Converter implements Contract {
     /**
      * Convert to camel case format.
      *
-     * @param $string
+     * @param \SSD\StringConverter\Types\Contract
+     * @param string $string
+     *
      * @return string
      */
-    public function to($string)
+    public function from(Contract $contract, $string)
     {
-        return $this->recipe(
+
+        return $contract->recipe(
             strtolower($string),
             'upperCaseFirst'
         );
-    }
 
+    }
 
     /**
      * Return result of the regular expression replacement.
@@ -28,7 +31,7 @@ class Camel extends Converter implements Contract {
      * @param $string
      * @param $method
      *
-     * @return mixed
+     * @return string
      */
     public function recipe($string, $method)
     {
@@ -40,4 +43,6 @@ class Camel extends Converter implements Contract {
         );
 
     }
+
+
 }
