@@ -37,8 +37,7 @@ class Factory {
 
 
     /**
-     * Get array with index 0 representing class name
-     * and index 1 representing the method name.
+     * Get array of class names.
      *
      * @param $name
      *
