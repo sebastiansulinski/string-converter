@@ -10,7 +10,7 @@ class FactoryTest extends BaseTest {
      * @expectedException \BadMethodCallException
      *
      * @expectedExceptionMessage
-     * The class / method you called does not exist
+     * The method you called does not contain both operands
      */
     public function testCallStaticNonExistentMethodShort()
     {
@@ -24,7 +24,7 @@ class FactoryTest extends BaseTest {
      * @expectedException \BadMethodCallException
      *
      * @expectedExceptionMessage
-     * Method toBackslash does not exist on class SSD\StringConverter\Types\Camel
+     * The format class you're trying to convert to does not exists
      */
     public function testCallStaticNonExistentMethod()
     {
