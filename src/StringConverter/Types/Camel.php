@@ -3,15 +3,23 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-use SSD\StringConverter\Traits\Constantable;
-use SSD\StringConverter\Traits\Hyphenable;
-use SSD\StringConverter\Traits\Spaceable;
-use SSD\StringConverter\Traits\Underscoreable;
+
+class Camel extends Converter implements Contract {
 
 
-class Camel extends Converter {
-
-    use Constantable, Hyphenable, Underscoreable, Spaceable;
+    /**
+     * Convert to camel case format.
+     *
+     * @param $string
+     * @return string
+     */
+    public function to($string)
+    {
+        return $this->recipe(
+            strtolower($string),
+            'upperCaseFirst'
+        );
+    }
 
 
     /**
@@ -22,7 +30,7 @@ class Camel extends Converter {
      *
      * @return mixed
      */
-    protected function express($string, $method)
+    public function recipe($string, $method)
     {
 
         return preg_replace_callback(
@@ -32,6 +40,4 @@ class Camel extends Converter {
         );
 
     }
-
-
 }
