@@ -58,7 +58,10 @@ class Factory {
 
         }
 
-        return static::className($elements[1]);
+        return [
+            static::className($elements[0]),
+            static::className($elements[1])
+        ];
 
     }
 
@@ -77,7 +80,7 @@ class Factory {
 
         $className = static::getClass($name);
 
-        if (!class_exists($className)) {
+        if (!class_exists($className[0]) || !class_exists($className[1])) {
 
             throw new BadMethodCallException(
                 "The format class you're trying to convert to does not exists"
@@ -85,8 +88,10 @@ class Factory {
 
         }
 
+        array_unshift($arguments, new $className[0]);
+
         return call_user_func_array(
-            [new $className, 'to'],
+            [new $className[1], 'from'],
             $arguments
         );
 
