@@ -3,16 +3,27 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-use SSD\StringConverter\Traits\Camelable;
-use SSD\StringConverter\Traits\Constantable;
-use SSD\StringConverter\Traits\Hyphenable;
-use SSD\StringConverter\Traits\Spaceable;
+
+class Underscore extends Converter implements Contract {
 
 
-class Underscore extends Converter {
+    /**
+     * Convert to underscore format.
+     *
+     * @param $string
+     * @return string
+     */
+    public function to($string)
+    {
 
-    use Camelable, Constantable, Hyphenable, Spaceable;
+        return strtolower(
+            $this->recipe(
+                $string,
+                'underscore'
+            )
+        );
 
+    }
 
     /**
      * Return result of the regular expression replacement.
@@ -22,7 +33,7 @@ class Underscore extends Converter {
      *
      * @return mixed
      */
-    protected function express($string, $method)
+    public function recipe($string, $method)
     {
 
         return preg_replace_callback(
@@ -32,6 +43,4 @@ class Underscore extends Converter {
         );
 
     }
-
-
 }

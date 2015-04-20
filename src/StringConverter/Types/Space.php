@@ -3,16 +3,35 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-use SSD\StringConverter\Traits\Camelable;
-use SSD\StringConverter\Traits\Constantable;
-use SSD\StringConverter\Traits\Hyphenable;
-use SSD\StringConverter\Traits\Underscoreable;
+
+class Space extends Converter implements Contract {
 
 
-class Space extends Converter {
+    /**
+     * Convert to space format.
+     * Call optional function on callback.
+     *
+     * @param $string
+     * @param null $function
+     * @return mixed
+     */
+    public function to($string, $function = null)
+    {
 
-    use Camelable, Constantable, Hyphenable, Underscoreable;
+        $string = $this->recipe($string, 'space');
 
+        if (empty($function)) {
+
+            return $string;
+
+        }
+
+        return call_user_func(
+            $function,
+            $string
+        );
+
+    }
 
     /**
      * Return result of the regular expression replacement.
@@ -22,7 +41,7 @@ class Space extends Converter {
      *
      * @return mixed
      */
-    protected function express($string, $method)
+    public function recipe($string, $method)
     {
 
         return preg_replace_callback(
@@ -32,6 +51,4 @@ class Space extends Converter {
         );
 
     }
-
-
 }

@@ -3,15 +3,27 @@
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-use SSD\StringConverter\Traits\Camelable;
-use SSD\StringConverter\Traits\Constantable;
-use SSD\StringConverter\Traits\Spaceable;
-use SSD\StringConverter\Traits\Underscoreable;
+
+class Hyphen extends Converter implements Contract {
 
 
-class Hyphen extends Converter {
+    /**
+     * Convert to hyphen format.
+     *
+     * @param $string
+     * @return string
+     */
+    public function to($string)
+    {
 
-    use Camelable, Constantable, Underscoreable, Spaceable;
+        return strtolower(
+            $this->recipe(
+                $string,
+                'hyphen'
+            )
+        );
+
+    }
 
     /**
      * Return result of the regular expression replacement.
@@ -21,7 +33,7 @@ class Hyphen extends Converter {
      *
      * @return mixed
      */
-    protected function express($string, $method)
+    public function recipe($string, $method)
     {
 
         return preg_replace_callback(
@@ -31,6 +43,4 @@ class Hyphen extends Converter {
         );
 
     }
-
-
 }
