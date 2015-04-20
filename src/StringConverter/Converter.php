@@ -63,16 +63,5 @@ abstract class Converter {
     }
 
 
-    /**
-     * Return result of the regular expression replacement
-     *
-     * @param $string
-     * @param $methodName
-     *
-     * @return mixed
-     */
-    abstract protected function express($string, $methodName);
-
-
 
 }
