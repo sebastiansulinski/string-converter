@@ -2,23 +2,8 @@
 
 
 use BadMethodCallException;
-use ReflectionClass;
 
 class Factory {
-
-
-    /**
-     * Return ReflectionClass instance of the given class.
-     *
-     * @param $className
-     *
-     * @return ReflectionClass
-     */
-    private static function reflection($className)
-    {
-
-        return (new ReflectionClass(new $className));
-    }
 
 
     /**
@@ -37,21 +22,6 @@ class Factory {
 
 
     /**
-     * Return formatted method name.
-     *
-     * @param $elements
-     *
-     * @return string
-     */
-    private static function methodName($elements)
-    {
-
-        return lcfirst(implode($elements));
-
-    }
-
-
-    /**
      * Split name into array using capital letters as delimiter.
      *
      * @param $name
@@ -61,12 +31,7 @@ class Factory {
     private static function splitName($name)
     {
 
-        return preg_split(
-            RegEx::REGEX_CAPITAL_LETTERS,
-            $name,
-            -1,
-            PREG_SPLIT_DELIM_CAPTURE
-        );
+        return explode('To', $name);
 
     }
 
@@ -78,24 +43,22 @@ class Factory {
      * @param $name
      *
      * @return array
+     * @throws \BadMethodCallException
      */
-    private static function getClassMethod($name)
+    private static function getClass($name)
     {
 
         $elements = static::splitName($name);
 
-        if (count($elements) < 3) {
+        if (count($elements) < 2) {
 
             throw new BadMethodCallException(
-                "The class / method you called does not exist"
+                "The method you called does not contain both operands"
             );
 
         }
 
-        return [
-            static::className(array_shift($elements)),
-            static::methodName($elements)
-        ];
+        return static::className($elements[1]);
 
     }
 
@@ -106,25 +69,24 @@ class Factory {
      * @param $name
      * @param $arguments
      *
-     * @throws BadMethodCallException
      * @return mixed
+     * @throws \BadMethodCallException
      */
     public static function __callStatic($name, array $arguments = [])
     {
 
-        list($className, $method) = static::getClassMethod($name);
+        $className = static::getClass($name);
 
-
-        if ( ! static::reflection($className)->hasMethod($method)) {
+        if (!class_exists($className)) {
 
             throw new BadMethodCallException(
-                "Method {$method} does not exist on class {$className}"
+                "The format class you're trying to convert to does not exists"
             );
 
         }
 
         return call_user_func_array(
-            [new $className, $method],
+            [new $className, 'to'],
             $arguments
         );
 
