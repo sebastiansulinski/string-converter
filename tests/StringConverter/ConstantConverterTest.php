@@ -11,7 +11,7 @@ class ConstantConverterCase extends BaseCase
 
         $result = Factory::constantToClassName(parent::STRING_CONSTANT);
 
-        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+        $this->assertSame('PhpEol', $result);
 
     }
 
@@ -20,7 +20,7 @@ class ConstantConverterCase extends BaseCase
 
         $result = Factory::constantToCamel(parent::STRING_CONSTANT);
 
-        $this->assertSame(parent::STRING_CAMEL, $result);
+        $this->assertSame('phpEol', $result);
 
     }
 
@@ -29,7 +29,7 @@ class ConstantConverterCase extends BaseCase
 
         $result = Factory::constantToHyphen(parent::STRING_CONSTANT);
 
-        $this->assertSame(parent::STRING_HYPHEN, $result);
+        $this->assertSame('PHP-EOL', $result);
 
     }
 
@@ -38,25 +38,25 @@ class ConstantConverterCase extends BaseCase
 
         $result = Factory::constantToUnderscore(parent::STRING_CONSTANT);
 
-        $this->assertSame(parent::STRING_UNDERSCORE, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
     public function testConstantToSpace()
     {
 
-        $result = Factory::constantToSpace(parent::STRING_CONSTANT, 'strtolower');
+        $result = Factory::constantToSpace(parent::STRING_CONSTANT);
 
-        $this->assertSame(parent::STRING_SPACE, $result);
+        $this->assertSame('PHP EOL', $result);
 
     }
 
-    public function testConstantToSpaceFails()
+    public function testConstantToSpaceStringToLower()
     {
 
-        $result = Factory::constantToSpace(parent::STRING_CONSTANT);
+        $result = Factory::constantToSpace(parent::STRING_CONSTANT, 'strtolower');
 
-        $this->assertNotSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php eol', $result);
 
     }
 

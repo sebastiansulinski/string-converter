@@ -49,18 +49,18 @@ abstract class Converter
     }
 
     /**
-     * Call before callback.
+     * Callback.
      *
      * @param $string
-     * @param callable|null $before
-     * @return null
+     * @param callable|null $callback
+     * @return mixed
      */
-    final protected function callBefore($string, callable $before = null)
+    final protected function callback($string, callable $callback = null)
     {
-        if ( ! is_callable($before)) {
+        if ( ! is_callable($callback)) {
             return $string;
         }
 
-        return call_user_func($before, $string);
+        return call_user_func($callback, $string);
     }
 }

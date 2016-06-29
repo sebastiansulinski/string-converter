@@ -11,7 +11,7 @@ class CamelConverterCase extends BaseCase
 
         $result = Factory::camelToClassName(parent::STRING_CAMEL);
 
-        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+        $this->assertSame('PhpEol', $result);
 
     }
 
@@ -20,7 +20,7 @@ class CamelConverterCase extends BaseCase
 
         $result = Factory::camelToConstant(parent::STRING_CAMEL);
 
-        $this->assertSame(parent::STRING_CONSTANT, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
@@ -29,7 +29,7 @@ class CamelConverterCase extends BaseCase
 
         $result = Factory::camelToHyphen(parent::STRING_CAMEL);
 
-        $this->assertSame(parent::STRING_HYPHEN, $result);
+        $this->assertSame('php-Eol', $result);
 
     }
 
@@ -38,25 +38,25 @@ class CamelConverterCase extends BaseCase
 
         $result = Factory::camelToUnderscore(parent::STRING_CAMEL);
 
-        $this->assertSame(parent::STRING_UNDERSCORE, $result);
+        $this->assertSame('php_Eol', $result);
 
     }
 
     public function testCamelToSpace()
     {
 
-        $result = Factory::camelToSpace(parent::STRING_CAMEL, 'strtolower');
+        $result = Factory::camelToSpace(parent::STRING_CAMEL);
 
-        $this->assertSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php Eol', $result);
 
     }
 
-    public function testCamelToSpaceFails()
+    public function testCamelToSpaceStringToLower()
     {
 
-        $result = Factory::camelToSpace(parent::STRING_CAMEL);
+        $result = Factory::camelToSpace(parent::STRING_CAMEL, 'strtolower');
 
-        $this->assertNotSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php eol', $result);
 
     }
 

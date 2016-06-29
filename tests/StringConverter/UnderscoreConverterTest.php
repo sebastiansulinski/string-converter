@@ -11,7 +11,7 @@ class UnderscoreConverterCase extends BaseCase
 
         $result = Factory::underscoreToClassName(parent::STRING_UNDERSCORE);
 
-        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+        $this->assertSame('PhpEol', $result);
 
     }
 
@@ -20,7 +20,7 @@ class UnderscoreConverterCase extends BaseCase
 
         $result = Factory::underscoreToCamel(parent::STRING_UNDERSCORE);
 
-        $this->assertSame(parent::STRING_CAMEL, $result);
+        $this->assertSame('phpEol', $result);
 
     }
 
@@ -29,7 +29,7 @@ class UnderscoreConverterCase extends BaseCase
 
         $result = Factory::underscoreToConstant(parent::STRING_UNDERSCORE);
 
-        $this->assertSame(parent::STRING_CONSTANT, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
@@ -38,25 +38,25 @@ class UnderscoreConverterCase extends BaseCase
 
         $result = Factory::underscoreToHyphen(parent::STRING_UNDERSCORE);
 
-        $this->assertSame(parent::STRING_HYPHEN, $result);
+        $this->assertSame('php-eol', $result);
 
     }
 
     public function testUnderscoreToSpace()
     {
 
-        $result = Factory::underscoreToSpace(ucfirst(parent::STRING_UNDERSCORE), 'strtolower');
+        $result = Factory::underscoreToSpace(parent::STRING_UNDERSCORE);
 
-        $this->assertSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php eol', $result);
 
     }
 
-    public function testUnderscoreToSpaceFails()
+    public function testUnderscoreToSpaceStringToUpper()
     {
 
-        $result = Factory::underscoreToSpace(ucfirst(parent::STRING_UNDERSCORE));
+        $result = Factory::underscoreToSpace(parent::STRING_UNDERSCORE, 'strtoupper');
 
-        $this->assertNotSame(parent::STRING_SPACE, $result);
+        $this->assertSame('PHP EOL', $result);
 
     }
 

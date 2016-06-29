@@ -10,26 +10,30 @@ class ClassName extends Converter implements Contract
     /**
      * Convert to camel case format.
      *
-     * @param \SSD\StringConverter\Types\Contract
+     * @param Contract $contract
      * @param string $string
-     *
+     * @param callable $callback
      * @return string
      */
-    public function from(Contract $contract, $string)
+    public function from(Contract $contract, $string, callable $callback = null)
     {
-        return ucwords($contract->recipe(
-            $string,
-            'upperCaseFirst',
-            function($string) use($contract) {
+        $string = ucwords(
+            $contract->recipe(
+                $string,
+                'upperCaseFirst',
+                function($string) use($contract) {
 
-                if ($contract instanceof Camel) {
-                    return $string;
+                    if ($contract instanceof Camel) {
+                        return $string;
+                    }
+
+                    return strtolower($string);
+
                 }
-
-                return strtolower($string);
-
-            }
-        ));
+            )
+        );
+        
+        return $this->callback($string, $callback);
     }
 
     /**
@@ -37,15 +41,15 @@ class ClassName extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     * @param callable|null $before
+     * @param callable|null $callback
      * @return string
      */
-    public function recipe($string, $method, callable $before = null)
+    public function recipe($string, $method, callable $callback = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_CAPITAL_LETTERS,
             [$this, $method],
-            $this->callBefore($string, $before)
+            $this->callback($string, $callback)
         );
     }
 

@@ -1,27 +1,26 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
-
 
 class Constant extends Converter implements Contract
 {
     /**
      * Convert to constant format.
      *
-     * @param \SSD\StringConverter\Types\Contract
+     * @param Contract $contract
      * @param string $string
-     *
+     * @param callable|null $callback
      * @return string
      */
-    public function from(Contract $contract, $string)
+    public function from(Contract $contract, $string, callable $callback = null)
     {
-        return ltrim(strtoupper(
-            $contract->recipe(
-                $string,
-                'underscore'
-            )
-        ), '_');
+        return $this->callback(
+            ltrim( strtoupper($contract->recipe($string, 'underscore')), '_' ),
+            $callback
+        );
     }
 
     /**
@@ -29,15 +28,15 @@ class Constant extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     * @param callable|null $before
+     * @param callable|null $callback
      * @return string
      */
-    public function recipe($string, $method, callable $before = null)
+    public function recipe($string, $method, callable $callback = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_UNDERSCORE,
             [$this, $method],
-            $this->callBefore($string, $before)
+            $this->callback($string, $callback)
         );
     }
 

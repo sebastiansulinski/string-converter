@@ -13,21 +13,15 @@ class Space extends Converter implements Contract
      *
      * @param \SSD\StringConverter\Types\Contract
      * @param string $string
-     * @param null $function
+     * @param callable|null $callback
      *
      * @return string
      */
-    public function from(Contract $contract, $string, $function = null)
+    public function from(Contract $contract, $string, callable $callback = null)
     {
-        $string = trim($contract->recipe($string, 'space'));
-
-        if (empty($function)) {
-            return $string;
-        }
-
-        return call_user_func(
-            $function,
-            $string
+        return $this->callback(
+            trim($contract->recipe($string, 'space')),
+            $callback
         );
     }
 
@@ -36,15 +30,15 @@ class Space extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     * @param callable|null $before
+     * @param callable|null $callback
      * @return string
      */
-    public function recipe($string, $method, callable $before = null)
+    public function recipe($string, $method, callable $callback = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_SPACE,
             [$this, $method],
-            $this->callBefore($string, $before)
+            $this->callback($string, $callback)
         );
     }
 

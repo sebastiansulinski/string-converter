@@ -10,16 +10,16 @@ class Camel extends Converter implements Contract
     /**
      * Convert to camel case format.
      *
-     * @param \SSD\StringConverter\Types\Contract
+     * @param Contract $contract
      * @param string $string
-     *
+     * @param callable $callback
      * @return string
      */
-    public function from(Contract $contract, $string)
+    public function from(Contract $contract, $string, callable $callback = null)
     {
-        return $contract->recipe(
-            strtolower($string),
-            'upperCaseFirst'
+        return $this->callback(
+            $contract->recipe( strtolower($string), 'upperCaseFirst'),
+            $callback
         );
     }
 
@@ -36,7 +36,7 @@ class Camel extends Converter implements Contract
         return preg_replace_callback(
             RegEx::REGEX_CAPITAL_LETTERS,
             [$this, $method],
-            $this->callBefore($string, $before)
+            $this->callback($string, $before)
         );
     }
 

@@ -11,7 +11,7 @@ class HyphenConverterCase extends BaseCase
 
         $result = Factory::hyphenToClassName(parent::STRING_HYPHEN);
 
-        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+        $this->assertSame('PhpEol', $result);
 
     }
 
@@ -20,7 +20,7 @@ class HyphenConverterCase extends BaseCase
 
         $result = Factory::hyphenToCamel(parent::STRING_HYPHEN);
 
-        $this->assertSame(parent::STRING_CAMEL, $result);
+        $this->assertSame('phpEol', $result);
 
     }
 
@@ -29,7 +29,7 @@ class HyphenConverterCase extends BaseCase
 
         $result = Factory::hyphenToConstant(parent::STRING_HYPHEN);
 
-        $this->assertSame(parent::STRING_CONSTANT, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
@@ -38,25 +38,25 @@ class HyphenConverterCase extends BaseCase
 
         $result = Factory::hyphenToUnderscore(parent::STRING_HYPHEN);
 
-        $this->assertSame(parent::STRING_UNDERSCORE, $result);
+        $this->assertSame('php_eol', $result);
 
     }
 
     public function testHyphenToSpace()
     {
 
-        $result = Factory::hyphenToSpace(ucfirst(parent::STRING_HYPHEN), 'strtolower');
+        $result = Factory::hyphenToSpace(parent::STRING_HYPHEN);
 
-        $this->assertSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php eol', $result);
 
     }
 
-    public function testHyphenToSpaceFails()
+    public function testHyphenToSpaceStringToUpper()
     {
 
-        $result = Factory::hyphenToSpace(ucfirst(parent::STRING_HYPHEN));
+        $result = Factory::hyphenToSpace(ucfirst(parent::STRING_HYPHEN), 'strtoupper');
 
-        $this->assertNotSame(parent::STRING_SPACE, $result);
+        $this->assertSame('PHP EOL', $result);
 
     }
 

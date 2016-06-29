@@ -10,19 +10,17 @@ class Hyphen extends Converter implements Contract
     /**
      * Convert to hyphen format.
      *
-     * @param \SSD\StringConverter\Types\Contract
+     * @param Contract $contract
      * @param string $string
-     *
+     * @param callable|null $callback
      * @return string
      */
-    public function from(Contract $contract, $string)
+    public function from(Contract $contract, $string, callable $callback = null)
     {
-        return ltrim(strtolower(
-            $contract->recipe(
-                $string,
-                'hyphen'
-            )
-        ), '-');
+        return $this->callback(
+            ltrim( $contract->recipe($string, 'hyphen'), '-' ),
+            $callback
+        );
     }
 
     /**
@@ -30,15 +28,15 @@ class Hyphen extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     * @param callable|null $before
+     * @param callable|null $callback
      * @return string
      */
-    public function recipe($string, $method, callable $before = null)
+    public function recipe($string, $method, callable $callback = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_HYPHEN,
             [$this, $method],
-            $this->callBefore($string, $before)
+            $this->callback($string, $callback)
         );
     }
 

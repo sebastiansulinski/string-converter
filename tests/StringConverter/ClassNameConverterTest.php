@@ -11,7 +11,7 @@ class ClassNameConverterCase extends BaseCase
 
         $result = Factory::classNameToConstant(parent::STRING_CLASS_NAME);
 
-        $this->assertSame(parent::STRING_CONSTANT, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
@@ -20,7 +20,7 @@ class ClassNameConverterCase extends BaseCase
 
         $result = Factory::classNameToHyphen(parent::STRING_CLASS_NAME);
 
-        $this->assertSame(parent::STRING_HYPHEN, $result);
+        $this->assertSame('Php-Eol', $result);
 
     }
 
@@ -29,25 +29,25 @@ class ClassNameConverterCase extends BaseCase
 
         $result = Factory::classNameToUnderscore(parent::STRING_CLASS_NAME);
 
-        $this->assertSame(parent::STRING_UNDERSCORE, $result);
+        $this->assertSame('Php_Eol', $result);
 
     }
 
     public function testClassNameToSpace()
     {
 
-        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME, 'strtolower');
+        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME);
 
-        $this->assertSame(parent::STRING_SPACE, $result);
+        $this->assertSame('Php Eol', $result);
 
     }
 
-    public function testClassNameToSpaceFails()
+    public function testClassNameToSpaceStringToLower()
     {
 
-        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME);
+        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME, 'strtolower');
 
-        $this->assertNotSame(parent::STRING_SPACE, $result);
+        $this->assertSame('php eol', $result);
 
     }
 

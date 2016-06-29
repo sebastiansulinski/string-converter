@@ -7,21 +7,21 @@ interface Contract
     /**
      * Convert to format.
      *
-     * @param \SSD\StringConverter\Types\Contract
+     * @param Contract $contract
      * @param string $string
-     *
+     * @param callable|null $callback
      * @return string
      */
-    public function from(Contract $contract, $string);
+    public function from(Contract $contract, $string, callable $callback = null);
 
     /**
      * Return result of the regular expression replacement.
      *
      * @param $string
      * @param $method
-     * @param callable|null $before
+     * @param callable|null $callback
      * @return mixed
      */
-    public function recipe($string, $method, callable $before = null);
+    public function recipe($string, $method, callable $callback = null);
 
 }

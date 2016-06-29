@@ -11,7 +11,7 @@ class SpaceConverterCase extends BaseCase
 
         $result = Factory::spaceToClassName(parent::STRING_SPACE);
 
-        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+        $this->assertSame('PhpEol', $result);
 
     }
 
@@ -20,7 +20,7 @@ class SpaceConverterCase extends BaseCase
 
         $result = Factory::spaceToCamel(parent::STRING_SPACE);
 
-        $this->assertSame(parent::STRING_CAMEL, $result);
+        $this->assertSame('phpEol', $result);
 
     }
 
@@ -29,7 +29,7 @@ class SpaceConverterCase extends BaseCase
 
         $result = Factory::spaceToConstant(parent::STRING_SPACE);
 
-        $this->assertSame(parent::STRING_CONSTANT, $result);
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
@@ -38,7 +38,7 @@ class SpaceConverterCase extends BaseCase
 
         $result = Factory::spaceToHyphen(parent::STRING_SPACE);
 
-        $this->assertSame(parent::STRING_HYPHEN, $result);
+        $this->assertSame('php-eol', $result);
 
     }
 
@@ -47,7 +47,16 @@ class SpaceConverterCase extends BaseCase
 
         $result = Factory::spaceToUnderscore(parent::STRING_SPACE);
 
-        $this->assertSame(parent::STRING_UNDERSCORE, $result);
+        $this->assertSame('php_eol', $result);
+
+    }
+
+    public function testSpaceToUnderscoreStringToUpper()
+    {
+
+        $result = Factory::spaceToUnderscore(parent::STRING_SPACE, 'strtoupper');
+
+        $this->assertSame('PHP_EOL', $result);
 
     }
 
