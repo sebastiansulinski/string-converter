@@ -19,7 +19,7 @@ class Space extends Converter implements Contract
      */
     public function from(Contract $contract, $string, $function = null)
     {
-        $string = $contract->recipe($string, 'space');
+        $string = trim($contract->recipe($string, 'space'));
 
         if (empty($function)) {
             return $string;
@@ -36,15 +36,15 @@ class Space extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     *
+     * @param callable|null $before
      * @return string
      */
-    public function recipe($string, $method)
+    public function recipe($string, $method, callable $before = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_SPACE,
             [$this, $method],
-            $string
+            $this->callBefore($string, $before)
         );
     }
 

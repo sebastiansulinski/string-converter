@@ -19,8 +19,9 @@ interface Contract
      *
      * @param $string
      * @param $method
+     * @param callable|null $before
      * @return mixed
      */
-    public function recipe($string, $method);
+    public function recipe($string, $method, callable $before = null);
 
 }

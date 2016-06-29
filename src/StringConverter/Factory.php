@@ -1,11 +1,11 @@
-<?php namespace SSD\StringConverter;
+<?php
 
+namespace SSD\StringConverter;
 
 use BadMethodCallException;
 
-class Factory {
-
-
+class Factory
+{
     /**
      * Return formatted class name.
      *
@@ -15,11 +15,8 @@ class Factory {
      */
     private static function className($name)
     {
-
         return "SSD\\StringConverter\\Types\\".ucfirst($name);
-
     }
-
 
     /**
      * Split name into array using capital letters as delimiter.
@@ -30,11 +27,8 @@ class Factory {
      */
     private static function splitName($name)
     {
-
         return explode('To', $name);
-
     }
-
 
     /**
      * Get array of class names.
@@ -46,7 +40,6 @@ class Factory {
      */
     private static function getClass($name)
     {
-
         $elements = static::splitName($name);
 
         if (count($elements) < 2) {
@@ -61,9 +54,7 @@ class Factory {
             static::className($elements[0]),
             static::className($elements[1])
         ];
-
     }
-
 
     /**
      * Call the method statically on the Converter sub-class.
@@ -76,7 +67,6 @@ class Factory {
      */
     public static function __callStatic($name, array $arguments = [])
     {
-
         $className = static::getClass($name);
 
         if (!class_exists($className[0]) || !class_exists($className[1])) {
@@ -93,7 +83,6 @@ class Factory {
             [new $className[1], 'from'],
             $arguments
         );
-
     }
 
 }

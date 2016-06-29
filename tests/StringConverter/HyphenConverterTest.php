@@ -3,8 +3,17 @@
 use SSD\StringConverter\Factory;
 
 
-class HyphenConverterTest extends BaseTest {
+class HyphenConverterCase extends BaseCase
+{
 
+    public function testHyphenToClassName()
+    {
+
+        $result = Factory::hyphenToClassName(parent::STRING_HYPHEN);
+
+        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+
+    }
 
     public function testHyphenToCamel()
     {

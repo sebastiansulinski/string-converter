@@ -3,8 +3,17 @@
 use SSD\StringConverter\Factory;
 
 
-class CamelConverterTest extends BaseTest {
+class CamelConverterCase extends BaseCase
+{
 
+    public function testCamelToClassName()
+    {
+
+        $result = Factory::camelToClassName(parent::STRING_CAMEL);
+
+        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+
+    }
 
     public function testCamelToConstant()
     {

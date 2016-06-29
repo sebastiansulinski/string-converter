@@ -3,8 +3,17 @@
 use SSD\StringConverter\Factory;
 
 
-class SpaceConverterTest extends BaseTest {
+class SpaceConverterCase extends BaseCase
+{
 
+    public function testSpaceToClassName()
+    {
+
+        $result = Factory::spaceToClassName(parent::STRING_SPACE);
+
+        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+
+    }
 
     public function testSpaceToCamel()
     {

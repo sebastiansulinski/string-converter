@@ -1,7 +1,8 @@
 <?php
 
-
-abstract class BaseTest extends PHPUnit_Framework_TestCase {
+abstract class BaseCase extends PHPUnit_Framework_TestCase
+{
+    const STRING_CLASS_NAME = 'PhpEol';
 
     const STRING_CAMEL = 'phpEol';
 
@@ -12,5 +13,4 @@ abstract class BaseTest extends PHPUnit_Framework_TestCase {
     const STRING_UNDERSCORE = 'php_eol';
 
     const STRING_SPACE = 'php eol';
-
 }

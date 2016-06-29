@@ -7,11 +7,10 @@ abstract class Converter
     /**
      * Convert first letter to upper case.
      *
-     * @param $params
-     *
+     * @param array $params
      * @return string
      */
-    final protected function upperCaseFirst($params)
+    final protected function upperCaseFirst(array $params)
     {
         return ucfirst($params[1]);
     }
@@ -19,11 +18,10 @@ abstract class Converter
     /**
      * Prepend hyphen.
      *
-     * @param $params
-     *
+     * @param array $params
      * @return string
      */
-    final protected function hyphen($params)
+    final protected function hyphen(array $params)
     {
         return "-".$params[1];
     }
@@ -31,11 +29,10 @@ abstract class Converter
     /**
      * Prepend underscore.
      *
-     * @param $params
-     *
+     * @param array $params
      * @return string
      */
-    final public function underscore($params)
+    final public function underscore(array $params)
     {
         return "_".$params[1];
     }
@@ -43,12 +40,27 @@ abstract class Converter
     /**
      * Prepend space.
      *
-     * @param $params
-     *
+     * @param array $params
      * @return string
      */
-    final protected function space($params)
+    final protected function space(array $params)
     {
         return " ".$params[1];
+    }
+
+    /**
+     * Call before callback.
+     *
+     * @param $string
+     * @param callable|null $before
+     * @return null
+     */
+    final protected function callBefore($string, callable $before = null)
+    {
+        if ( ! is_callable($before)) {
+            return $string;
+        }
+
+        return call_user_func($before, $string);
     }
 }

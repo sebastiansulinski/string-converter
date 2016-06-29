@@ -17,12 +17,12 @@ class Underscore extends Converter implements Contract
      */
     public function from(Contract $contract, $string)
     {
-        return strtolower(
+        return ltrim(strtolower(
             $contract->recipe(
                 $string,
                 'underscore'
             )
-        );
+        ), '_');
     }
 
     /**
@@ -30,15 +30,15 @@ class Underscore extends Converter implements Contract
      *
      * @param $string
      * @param $method
-     *
+     * @param callable|null $before
      * @return string
      */
-    public function recipe($string, $method)
+    public function recipe($string, $method, callable $before = null)
     {
         return preg_replace_callback(
             RegEx::REGEX_UNDERSCORE,
             [$this, $method],
-            $string
+            $this->callBefore($string, $before)
         );
     }
 }

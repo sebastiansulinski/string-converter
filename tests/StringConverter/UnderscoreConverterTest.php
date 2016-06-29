@@ -3,8 +3,17 @@
 use SSD\StringConverter\Factory;
 
 
-class UnderscoreConverterTest extends BaseTest {
+class UnderscoreConverterCase extends BaseCase
+{
 
+    public function testUnderscoreToClassName()
+    {
+
+        $result = Factory::underscoreToClassName(parent::STRING_UNDERSCORE);
+
+        $this->assertSame(parent::STRING_CLASS_NAME, $result);
+
+    }
 
     public function testUnderscoreToCamel()
     {

@@ -1,13 +1,14 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-
-class Constant extends Converter implements Contract
+class ClassName extends Converter implements Contract
 {
     /**
-     * Convert to constant format.
+     * Convert to camel case format.
      *
      * @param \SSD\StringConverter\Types\Contract
      * @param string $string
@@ -16,12 +17,19 @@ class Constant extends Converter implements Contract
      */
     public function from(Contract $contract, $string)
     {
-        return ltrim(strtoupper(
-            $contract->recipe(
-                $string,
-                'underscore'
-            )
-        ), '_');
+        return ucwords($contract->recipe(
+            $string,
+            'upperCaseFirst',
+            function($string) use($contract) {
+
+                if ($contract instanceof Camel) {
+                    return $string;
+                }
+
+                return strtolower($string);
+
+            }
+        ));
     }
 
     /**
@@ -35,7 +43,7 @@ class Constant extends Converter implements Contract
     public function recipe($string, $method, callable $before = null)
     {
         return preg_replace_callback(
-            RegEx::REGEX_UNDERSCORE,
+            RegEx::REGEX_CAPITAL_LETTERS,
             [$this, $method],
             $this->callBefore($string, $before)
         );

@@ -19,5 +19,10 @@
     "psr-4": {
       "SSD\\": "src"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/BaseCase.php"
+    ]
   }
 }
