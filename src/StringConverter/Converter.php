@@ -1,9 +1,8 @@
 <?php namespace SSD\StringConverter;
 
 
-abstract class Converter {
-
-
+abstract class Converter
+{
     /**
      * Convert first letter to upper case.
      *
@@ -13,11 +12,8 @@ abstract class Converter {
      */
     final protected function upperCaseFirst($params)
     {
-
         return ucfirst($params[1]);
-
     }
-
 
     /**
      * Prepend hyphen.
@@ -28,11 +24,8 @@ abstract class Converter {
      */
     final protected function hyphen($params)
     {
-
-        return "-" . $params[1];
-
+        return "-".$params[1];
     }
-
 
     /**
      * Prepend underscore.
@@ -43,11 +36,8 @@ abstract class Converter {
      */
     final public function underscore($params)
     {
-
-        return "_" . $params[1];
-
+        return "_".$params[1];
     }
-
 
     /**
      * Prepend space.
@@ -58,10 +48,6 @@ abstract class Converter {
      */
     final protected function space($params)
     {
-
-        return " " . $params[1];
+        return " ".$params[1];
     }
-
-
-
 }

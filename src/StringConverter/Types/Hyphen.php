@@ -1,12 +1,12 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-
-class Hyphen extends Converter implements Contract {
-
-
+class Hyphen extends Converter implements Contract
+{
     /**
      * Convert to hyphen format.
      *
@@ -17,14 +17,12 @@ class Hyphen extends Converter implements Contract {
      */
     public function from(Contract $contract, $string)
     {
-
         return strtolower(
             $contract->recipe(
                 $string,
                 'hyphen'
             )
         );
-
     }
 
     /**
@@ -37,12 +35,11 @@ class Hyphen extends Converter implements Contract {
      */
     public function recipe($string, $method)
     {
-
         return preg_replace_callback(
             RegEx::REGEX_HYPHEN,
             [$this, $method],
             $string
         );
-
     }
+
 }

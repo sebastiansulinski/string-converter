@@ -1,12 +1,12 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-
-class Camel extends Converter implements Contract {
-
-
+class Camel extends Converter implements Contract
+{
     /**
      * Convert to camel case format.
      *
@@ -17,12 +17,10 @@ class Camel extends Converter implements Contract {
      */
     public function from(Contract $contract, $string)
     {
-
         return $contract->recipe(
             strtolower($string),
             'upperCaseFirst'
         );
-
     }
 
     /**
@@ -35,14 +33,11 @@ class Camel extends Converter implements Contract {
      */
     public function recipe($string, $method)
     {
-
         return preg_replace_callback(
             RegEx::REGEX_CAPITAL_LETTERS,
             [$this, $method],
             $string
         );
-
     }
-
 
 }

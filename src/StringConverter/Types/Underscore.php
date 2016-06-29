@@ -1,12 +1,12 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-
-class Underscore extends Converter implements Contract {
-
-
+class Underscore extends Converter implements Contract
+{
     /**
      * Convert to underscore format.
      *
@@ -17,14 +17,12 @@ class Underscore extends Converter implements Contract {
      */
     public function from(Contract $contract, $string)
     {
-
         return strtolower(
             $contract->recipe(
                 $string,
                 'underscore'
             )
         );
-
     }
 
     /**
@@ -37,12 +35,10 @@ class Underscore extends Converter implements Contract {
      */
     public function recipe($string, $method)
     {
-
         return preg_replace_callback(
             RegEx::REGEX_UNDERSCORE,
             [$this, $method],
             $string
         );
-
     }
 }

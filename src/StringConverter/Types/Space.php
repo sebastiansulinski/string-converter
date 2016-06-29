@@ -1,12 +1,12 @@
-<?php namespace SSD\StringConverter\Types;
+<?php
+
+namespace SSD\StringConverter\Types;
 
 use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
-
-class Space extends Converter implements Contract {
-
-
+class Space extends Converter implements Contract
+{
     /**
      * Convert to space format.
      * Call optional function on callback.
@@ -19,20 +19,16 @@ class Space extends Converter implements Contract {
      */
     public function from(Contract $contract, $string, $function = null)
     {
-
         $string = $contract->recipe($string, 'space');
 
         if (empty($function)) {
-
             return $string;
-
         }
 
         return call_user_func(
             $function,
             $string
         );
-
     }
 
     /**
@@ -45,12 +41,11 @@ class Space extends Converter implements Contract {
      */
     public function recipe($string, $method)
     {
-
         return preg_replace_callback(
             RegEx::REGEX_SPACE,
             [$this, $method],
             $string
         );
-
     }
+
 }

@@ -4,9 +4,8 @@ use SSD\StringConverter\Converter;
 use SSD\StringConverter\RegEx;
 
 
-class Constant extends Converter implements Contract {
-
-
+class Constant extends Converter implements Contract
+{
     /**
      * Convert to constant format.
      *
@@ -17,14 +16,12 @@ class Constant extends Converter implements Contract {
      */
     public function from(Contract $contract, $string)
     {
-
         return strtoupper(
             $contract->recipe(
                 $string,
                 'underscore'
             )
         );
-
     }
 
     /**
@@ -37,13 +34,11 @@ class Constant extends Converter implements Contract {
      */
     public function recipe($string, $method)
     {
-
         return preg_replace_callback(
             RegEx::REGEX_UNDERSCORE,
             [$this, $method],
             $string
         );
-
     }
 
 }
