@@ -1,5 +1,6 @@
-<?php namespace SSD\StringConverter;
+<?php
 
+namespace SSD\StringConverter;
 
 abstract class Converter
 {
