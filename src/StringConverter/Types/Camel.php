@@ -18,7 +18,19 @@ class Camel extends Converter implements Contract
     public function from(Contract $contract, $string, callable $callback = null)
     {
         return $this->callback(
-            $contract->recipe( strtolower($string), 'upperCaseFirst'),
+            $contract->recipe(
+                $string,
+                'upperCaseFirst',
+                function($string) use($contract) {
+
+                    if ($contract instanceof ClassName) {
+                        return lcfirst($string);
+                    }
+
+                    return strtolower($string);
+
+                }
+            ),
             $callback
         );
     }

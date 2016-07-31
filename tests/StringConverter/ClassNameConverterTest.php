@@ -6,6 +6,15 @@ use SSD\StringConverter\Factory;
 class ClassNameConverterCase extends BaseCase
 {
 
+    public function testClassNameToCamel()
+    {
+
+        $result = Factory::classNameToCamel(parent::STRING_CLASS_NAME);
+
+        $this->assertSame('phpEol', $result);
+
+    }
+
     public function testClassNameToConstant()
     {
 
