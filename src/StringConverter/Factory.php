@@ -2,30 +2,15 @@
 
 namespace SSD\StringConverter;
 
-use BadMethodCallException;
-
 class Factory
 {
     /**
-     * Return formatted class name.
-     *
-     * @param $name
-     *
-     * @return string
-     */
-    private static function className($name)
-    {
-        return "SSD\\StringConverter\\Types\\".ucfirst($name);
-    }
-
-    /**
      * Split name into array using capital letters as delimiter.
      *
-     * @param $name
-     *
+     * @param  string $name
      * @return array
      */
-    private static function splitName($name)
+    private static function splitName(string $name): array
     {
         return explode('To', $name);
     }
@@ -33,56 +18,27 @@ class Factory
     /**
      * Get array of class names.
      *
-     * @param $name
-     *
-     * @return array
-     * @throws \BadMethodCallException
+     * @param  string $name
+     * @return \SSD\StringConverter\Container
      */
-    private static function getClass($name)
+    private static function getClass(string $name): Container
     {
-        $elements = static::splitName($name);
-
-        if (count($elements) < 2) {
-
-            throw new BadMethodCallException(
-                "The method you called does not contain both operands"
-            );
-
-        }
-
-        return [
-            static::className($elements[0]),
-            static::className($elements[1])
-        ];
+        return new Container(...static::splitName($name));
     }
 
     /**
      * Call the method statically on the Converter sub-class.
      *
-     * @param $name
-     * @param $arguments
-     *
-     * @return mixed
-     * @throws \BadMethodCallException
+     * @param  string $name
+     * @param  array $arguments
+     * @return string
      */
-    public static function __callStatic($name, array $arguments = [])
+    public static function __callStatic(string $name, array $arguments = []): string
     {
-        $className = static::getClass($name);
+        $container = static::getClass($name);
 
-        if (!class_exists($className[0]) || !class_exists($className[1])) {
+        array_unshift($arguments, $container->from());
 
-            throw new BadMethodCallException(
-                "The format class you're trying to convert to does not exists"
-            );
-
-        }
-
-        array_unshift($arguments, new $className[0]);
-
-        return call_user_func_array(
-            [new $className[1], 'from'],
-            $arguments
-        );
+        return $container->to()->from(...$arguments);
     }
-
 }

@@ -1,63 +1,57 @@
 <?php
 
-use SSD\StringConverter\Factory;
+namespace SSDTest\StringConverter;
 
+use SSDTest\BaseCase;
+use SSD\StringConverter\Factory;
 
 class UnderscoreConverterCase extends BaseCase
 {
-
-    public function testUnderscoreToClassName()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_class_name()
     {
-
-        $result = Factory::underscoreToClassName(parent::STRING_UNDERSCORE);
-
-        $this->assertSame('PhpEol', $result);
-
+        $this->assertSame('PhpEol', Factory::underscoreToClassName(parent::STRING_UNDERSCORE));
     }
 
-    public function testUnderscoreToCamel()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_camel()
     {
-
-        $result = Factory::underscoreToCamel(parent::STRING_UNDERSCORE);
-
-        $this->assertSame('phpEol', $result);
-
+        $this->assertSame('phpEol', Factory::underscoreToCamel(parent::STRING_UNDERSCORE));
     }
 
-    public function testUnderscoreToConstant()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_constant()
     {
-
-        $result = Factory::underscoreToConstant(parent::STRING_UNDERSCORE);
-
-        $this->assertSame('PHP_EOL', $result);
-
+        $this->assertSame('PHP_EOL', Factory::underscoreToConstant(parent::STRING_UNDERSCORE));
     }
 
-    public function testUnderscoreToHyphen()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_hyphen()
     {
-
-        $result = Factory::underscoreToHyphen(parent::STRING_UNDERSCORE);
-
-        $this->assertSame('php-eol', $result);
-
+        $this->assertSame('php-eol', Factory::underscoreToHyphen(parent::STRING_UNDERSCORE));
     }
 
-    public function testUnderscoreToSpace()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_space()
     {
-
-        $result = Factory::underscoreToSpace(parent::STRING_UNDERSCORE);
-
-        $this->assertSame('php eol', $result);
-
+        $this->assertSame('php eol', Factory::underscoreToSpace(parent::STRING_UNDERSCORE));
     }
 
-    public function testUnderscoreToSpaceStringToUpper()
+    /**
+     * @test
+     */
+    public function converts_underscore_to_space_and_upper_case()
     {
-
-        $result = Factory::underscoreToSpace(parent::STRING_UNDERSCORE, 'strtoupper');
-
-        $this->assertSame('PHP EOL', $result);
-
+        $this->assertSame('PHP EOL', Factory::underscoreToSpace(parent::STRING_UNDERSCORE, 'strtoupper'));
     }
-
 }

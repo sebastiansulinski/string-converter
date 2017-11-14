@@ -2,49 +2,6 @@
 
 This simple class allows you to easily convert between the following string formats:
 
-
-- Class-name to:
-    - Camel-case (PhpEol => phpEol)
-    - Constant (PhpEol => PHP_EOL)
-    - Hyphen (PhpEol => Php-Eol)
-    - Underscore (PhpEol => Php_Eol)
-    - Space (PhpEol => Php Eol)
-
-- Camel-case to:
-    - Class-name (phpEol => PhpEol)
-    - Constant (phpEol => PHP_EOL)
-    - Hyphen (phpEol => php-Eol)
-    - Underscore (phpEol => php_Eol)
-    - Space (phpEol => php Eol)
-
-- Constant to:
-    - Class-name (PHP_EOL => PhpEol)
-    - Camel-case (PHP_EOL => phpEol)
-    - Hyphen (PHP_EOL => PHP-EOL)
-    - Underscore (PHP_EOL => PHP_EOL)
-    - Space (PHP_EOL => PHP EOL)
-
-- Hyphen to:
-    - Class-name (php-eol => PhpEol)
-    - Camel-case (php-eol => phpEol)
-    - Constant (php-eol => PHP_EOL)
-    - Underscore (php-eol => php_eol)
-    - Space (php-eol => php eol)
-
-- Underscore to:
-    - Class-name (php_eol => PhpEol)
-    - Camel-case (php_eol => phpEol)
-    - Constant (php_eol => PHP_EOL)
-    - Hyphen (php_eol => php-eol)
-    - Space (php_eol => php eol)
-
-- Space to:
-    - Class-name (php eol => PhpEol)
-    - Camel-case (php eol => phpEol)
-    - Constant (php eol => PHP_EOL)
-    - Hyphen (php eol => php-eol)
-    - Underscore (php eol => php_eol)
-
 ## Usage examples
 
 ### Class-name

@@ -1,63 +1,57 @@
 <?php
 
-use SSD\StringConverter\Factory;
+namespace SSDTest\StringConverter;
 
+use SSDTest\BaseCase;
+use SSD\StringConverter\Factory;
 
 class ConstantConverterCase extends BaseCase
 {
-
-    public function testConstantToClassName()
+    /**
+     * @test
+     */
+    public function converts_constant_to_class_name()
     {
-
-        $result = Factory::constantToClassName(parent::STRING_CONSTANT);
-
-        $this->assertSame('PhpEol', $result);
-
+        $this->assertSame('PhpEol', Factory::constantToClassName(parent::STRING_CONSTANT));
     }
 
-    public function testConstantToCamel()
+    /**
+     * @test
+     */
+    public function converts_constant_to_camel()
     {
-
-        $result = Factory::constantToCamel(parent::STRING_CONSTANT);
-
-        $this->assertSame('phpEol', $result);
-
+        $this->assertSame('phpEol', Factory::constantToCamel(parent::STRING_CONSTANT));
     }
 
-    public function testConstantToHyphen()
+    /**
+     * @test
+     */
+    public function converts_constant_to_hyphen()
     {
-
-        $result = Factory::constantToHyphen(parent::STRING_CONSTANT);
-
-        $this->assertSame('PHP-EOL', $result);
-
+        $this->assertSame('PHP-EOL', Factory::constantToHyphen(parent::STRING_CONSTANT));
     }
 
-    public function testConstantToUnderscore()
+    /**
+     * @test
+     */
+    public function converts_constant_to_underscore()
     {
-
-        $result = Factory::constantToUnderscore(parent::STRING_CONSTANT);
-
-        $this->assertSame('PHP_EOL', $result);
-
+        $this->assertSame('PHP_EOL', Factory::constantToUnderscore(parent::STRING_CONSTANT));
     }
 
-    public function testConstantToSpace()
+    /**
+     * @test
+     */
+    public function converts_constant_to_space()
     {
-
-        $result = Factory::constantToSpace(parent::STRING_CONSTANT);
-
-        $this->assertSame('PHP EOL', $result);
-
+        $this->assertSame('PHP EOL', Factory::constantToSpace(parent::STRING_CONSTANT));
     }
 
-    public function testConstantToSpaceStringToLower()
+    /**
+     * @test
+     */
+    public function converts_constant_to_space_and_lower_case()
     {
-
-        $result = Factory::constantToSpace(parent::STRING_CONSTANT, 'strtolower');
-
-        $this->assertSame('php eol', $result);
-
+        $this->assertSame('php eol', Factory::constantToSpace(parent::STRING_CONSTANT, 'strtolower'));
     }
-
 }

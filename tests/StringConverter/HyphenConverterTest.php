@@ -1,63 +1,57 @@
 <?php
 
-use SSD\StringConverter\Factory;
+namespace SSDTest\StringConverter;
 
+use SSDTest\BaseCase;
+use SSD\StringConverter\Factory;
 
 class HyphenConverterCase extends BaseCase
 {
-
-    public function testHyphenToClassName()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_class_name()
     {
-
-        $result = Factory::hyphenToClassName(parent::STRING_HYPHEN);
-
-        $this->assertSame('PhpEol', $result);
-
+        $this->assertSame('PhpEol', Factory::hyphenToClassName(parent::STRING_HYPHEN));
     }
 
-    public function testHyphenToCamel()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_camel()
     {
-
-        $result = Factory::hyphenToCamel(parent::STRING_HYPHEN);
-
-        $this->assertSame('phpEol', $result);
-
+        $this->assertSame('phpEol', Factory::hyphenToCamel(parent::STRING_HYPHEN));
     }
 
-    public function testHyphenToConstant()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_constant()
     {
-
-        $result = Factory::hyphenToConstant(parent::STRING_HYPHEN);
-
-        $this->assertSame('PHP_EOL', $result);
-
+        $this->assertSame('PHP_EOL', Factory::hyphenToConstant(parent::STRING_HYPHEN));
     }
 
-    public function testHyphenToUnderscore()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_underscore()
     {
-
-        $result = Factory::hyphenToUnderscore(parent::STRING_HYPHEN);
-
-        $this->assertSame('php_eol', $result);
-
+        $this->assertSame('php_eol', Factory::hyphenToUnderscore(parent::STRING_HYPHEN));
     }
 
-    public function testHyphenToSpace()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_space()
     {
-
-        $result = Factory::hyphenToSpace(parent::STRING_HYPHEN);
-
-        $this->assertSame('php eol', $result);
-
+        $this->assertSame('php eol', Factory::hyphenToSpace(parent::STRING_HYPHEN));
     }
 
-    public function testHyphenToSpaceStringToUpper()
+    /**
+     * @test
+     */
+    public function converts_hyphen_to_space_and_upper_case()
     {
-
-        $result = Factory::hyphenToSpace(ucfirst(parent::STRING_HYPHEN), 'strtoupper');
-
-        $this->assertSame('PHP EOL', $result);
-
+        $this->assertSame('PHP EOL', Factory::hyphenToSpace(ucfirst(parent::STRING_HYPHEN), 'strtoupper'));
     }
-
 }

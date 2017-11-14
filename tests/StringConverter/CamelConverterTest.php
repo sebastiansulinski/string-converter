@@ -1,64 +1,57 @@
 <?php
 
-use SSD\StringConverter\Factory;
+namespace SSDTest\StringConverter;
 
+use SSDTest\BaseCase;
+use SSD\StringConverter\Factory;
 
 class CamelConverterCase extends BaseCase
 {
-
-    public function testCamelToClassName()
+    /**
+     * @test
+     */
+    public function converts_camel_to_class_name()
     {
-
-        $result = Factory::camelToClassName(parent::STRING_CAMEL);
-
-        $this->assertSame('PhpEol', $result);
-
+        $this->assertSame('PhpEol', Factory::camelToClassName(parent::STRING_CAMEL));
     }
 
-    public function testCamelToConstant()
+    /**
+     * @test
+     */
+    public function converts_camel_to_constant()
     {
-
-        $result = Factory::camelToConstant(parent::STRING_CAMEL);
-
-        $this->assertSame('PHP_EOL', $result);
-
+        $this->assertSame('PHP_EOL', Factory::camelToConstant(parent::STRING_CAMEL));
     }
 
-    public function testCamelToHyphen()
+    /**
+     * @test
+     */
+    public function converts_camel_to_hyphen()
     {
-
-        $result = Factory::camelToHyphen(parent::STRING_CAMEL);
-
-        $this->assertSame('php-Eol', $result);
-
+        $this->assertSame('php-Eol', Factory::camelToHyphen(parent::STRING_CAMEL));
     }
 
-    public function testCamelToUnderscore()
+    /**
+     * @test
+     */
+    public function converts_camel_to_underscore()
     {
-
-        $result = Factory::camelToUnderscore(parent::STRING_CAMEL);
-
-        $this->assertSame('php_Eol', $result);
-
+        $this->assertSame('php_Eol', Factory::camelToUnderscore(parent::STRING_CAMEL));
     }
 
-    public function testCamelToSpace()
+    /**
+     * @test
+     */
+    public function converts_camel_to_space()
     {
-
-        $result = Factory::camelToSpace(parent::STRING_CAMEL);
-
-        $this->assertSame('php Eol', $result);
-
+        $this->assertSame('php Eol', Factory::camelToSpace(parent::STRING_CAMEL));
     }
 
-    public function testCamelToSpaceStringToLower()
+    /**
+     * @test
+     */
+    public function converts_camel_to_space_and_lower_case()
     {
-
-        $result = Factory::camelToSpace(parent::STRING_CAMEL, 'strtolower');
-
-        $this->assertSame('php eol', $result);
-
+        $this->assertSame('php eol', Factory::camelToSpace(parent::STRING_CAMEL, 'strtolower'));
     }
-
-
 }

@@ -2,36 +2,37 @@
 
 namespace SSD\StringConverter\Types;
 
-use SSD\StringConverter\Converter;
-use SSD\StringConverter\RegEx;
+use SSD\StringConverter\{
+    RegEx, Converter
+};
 
 class Hyphen extends Converter implements Contract
 {
     /**
-     * Convert to hyphen format.
+     * Convert to hyphen.
      *
-     * @param Contract $contract
-     * @param string $string
-     * @param callable|null $callback
+     * @param  \SSD\StringConverter\Types\Contract $contract
+     * @param  string $string
+     * @param  callable|null $callback
      * @return string
      */
-    public function from(Contract $contract, $string, callable $callback = null)
+    public function from(Contract $contract, string $string, callable $callback = null): string
     {
         return $this->callback(
-            ltrim( $contract->recipe($string, 'hyphen'), '-' ),
+            ltrim($contract->recipe($string, 'hyphen'), '-'),
             $callback
         );
     }
 
     /**
-     * Return result of the regular expression replacement.
+     * Conversion recipe.
      *
-     * @param $string
-     * @param $method
-     * @param callable|null $callback
-     * @return string
+     * @param  string $string
+     * @param  string $method
+     * @param  callable|null $callback
+     * @return mixed
      */
-    public function recipe($string, $method, callable $callback = null)
+    public function recipe(string $string, string $method, callable $callback = null): string
     {
         return preg_replace_callback(
             RegEx::REGEX_HYPHEN,
@@ -39,5 +40,4 @@ class Hyphen extends Converter implements Contract
             $this->callback($string, $callback)
         );
     }
-
 }

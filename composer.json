@@ -10,19 +10,19 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.4.0"
+    "php": "^7.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.7.*@dev"
+    "phpunit/phpunit": "^6.4"
   },
   "autoload": {
     "psr-4": {
-      "SSD\\": "src"
+      "SSD\\": "src/"
     }
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/BaseCase.php"
-    ]
+    "psr-4": {
+      "SSDTest\\": "tests/"
+    }
   }
 }

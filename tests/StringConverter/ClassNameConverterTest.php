@@ -1,64 +1,57 @@
 <?php
 
-use SSD\StringConverter\Factory;
+namespace SSDTest\StringConverter;
 
+use SSDTest\BaseCase;
+use SSD\StringConverter\Factory;
 
 class ClassNameConverterCase extends BaseCase
 {
-
-    public function testClassNameToCamel()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_camel()
     {
-
-        $result = Factory::classNameToCamel(parent::STRING_CLASS_NAME);
-
-        $this->assertSame('phpEol', $result);
-
+        $this->assertSame('phpEol', Factory::classNameToCamel(parent::STRING_CLASS_NAME));
     }
 
-    public function testClassNameToConstant()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_constant()
     {
-
-        $result = Factory::classNameToConstant(parent::STRING_CLASS_NAME);
-
-        $this->assertSame('PHP_EOL', $result);
-
+        $this->assertSame('PHP_EOL', Factory::classNameToConstant(parent::STRING_CLASS_NAME));
     }
 
-    public function testClassNameToHyphen()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_hyphen()
     {
-
-        $result = Factory::classNameToHyphen(parent::STRING_CLASS_NAME);
-
-        $this->assertSame('Php-Eol', $result);
-
+        $this->assertSame('Php-Eol', Factory::classNameToHyphen(parent::STRING_CLASS_NAME));
     }
 
-    public function testClassNameToUnderscore()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_underscore()
     {
-
-        $result = Factory::classNameToUnderscore(parent::STRING_CLASS_NAME);
-
-        $this->assertSame('Php_Eol', $result);
-
+        $this->assertSame('Php_Eol', Factory::classNameToUnderscore(parent::STRING_CLASS_NAME));
     }
 
-    public function testClassNameToSpace()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_space()
     {
-
-        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME);
-
-        $this->assertSame('Php Eol', $result);
-
+        $this->assertSame('Php Eol', Factory::classNameToSpace(parent::STRING_CLASS_NAME));
     }
 
-    public function testClassNameToSpaceStringToLower()
+    /**
+     * @test
+     */
+    public function converts_class_name_to_space_and_lower_case()
     {
-
-        $result = Factory::classNameToSpace(parent::STRING_CLASS_NAME, 'strtolower');
-
-        $this->assertSame('php eol', $result);
-
+        $this->assertSame('php eol', Factory::classNameToSpace(parent::STRING_CLASS_NAME, 'strtolower'));
     }
-
-
 }
