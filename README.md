@@ -1,6 +1,6 @@
 # Simple string converter
 
-This simple class allows you to easily convert between the following string formats:
+This package allows converting between different string formats.
 
 [![Build Status](https://travis-ci.org/sebastiansulinski/string-converter.svg?branch=master)](https://travis-ci.org/sebastiansulinski/string-converter)
 
