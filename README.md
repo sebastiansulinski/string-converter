@@ -8,7 +8,7 @@ This simple class allows you to easily convert between the following string form
 
 ### Class-name
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -30,7 +30,7 @@ echo Factory::classNameToSpace('PhpEol');
 
 ### Camel-case
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -52,7 +52,7 @@ echo Factory::camelToSpace('phpEol');
 
 ### Constant
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -74,7 +74,7 @@ echo Factory::constantToSpace('PHP_EOL');
 
 ### Hyphen
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -96,7 +96,7 @@ echo Factory::hyphenToSpace('php-eol');
 
 ### Underscore
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -118,7 +118,7 @@ echo Factory::underscoreToSpace('php_eol');
 
 ### Space
 
-```
+```php
 use SSD\StringConverter\Factory;
 
 
@@ -142,7 +142,7 @@ echo Factory::spaceToUnderscore('php eol');
 
 Factory methods can take an optional, second argument of `callable` type so you can additionally modify the result:
 
-```
+```php
 echo Factory::constantToSpace('PHP_EOL');
 // PHP EOL
 
