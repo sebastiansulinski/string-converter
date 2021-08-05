@@ -1,3 +1,4 @@
 /.idea
 /vendor
 example.php
+.phpunit.result.cache
