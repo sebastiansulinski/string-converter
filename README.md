@@ -2,8 +2,6 @@
 
 This package allows converting between different string formats.
 
-[![Build Status](https://travis-ci.org/sebastiansulinski/string-converter.svg?branch=master)](https://travis-ci.org/sebastiansulinski/string-converter)
-
 ## Usage examples
 
 ### Class-name

@@ -18,9 +18,6 @@ class Container
 
     /**
      * Container constructor.
-     *
-     * @param string $from
-     * @param string $to
      */
     public function __construct(string $from, string $to)
     {
@@ -30,8 +27,6 @@ class Container
 
     /**
      * Get source class instance.
-     *
-     * @return \SSD\StringConverter\Types\Contract
      */
     public function from(): Contract
     {
@@ -42,8 +37,6 @@ class Container
 
     /**
      * Get destination class instance.
-     *
-     * @return \SSD\StringConverter\Types\Contract
      */
     public function to(): Contract
     {
@@ -54,12 +47,9 @@ class Container
 
     /**
      * Return formatted class name.
-     *
-     * @param  string $name
-     * @return string
      */
     private function className(string $name): string
     {
-        return "SSD\\StringConverter\\Types\\".ucfirst($name);
+        return 'SSD\\StringConverter\\Types\\'.ucfirst($name);
     }
 }
